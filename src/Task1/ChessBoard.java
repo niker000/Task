@@ -6,15 +6,8 @@ public class ChessBoard {
     private int width;
 
     public ChessBoard(String height, String width) {
-        if(height == null || width == null) {
-            PrintInfo.printConsoleInstruction();
-        }
-        try{
-            this.height = Integer.parseInt(height);
-            this.width = Integer.parseInt(width);
-        } catch (NumberFormatException n) {
-            System.out.println("Parameter is not correct.");
-        }
+        this.height = Integer.parseInt(height);
+        this.width = Integer.parseInt(width);
     }
 
     public int getHeight() {
@@ -26,7 +19,6 @@ public class ChessBoard {
     }
 
     public String makeBoard() {
-
         StringBuilder board = new StringBuilder();
 
         for (int i = 1; i <= height; i++) {
@@ -41,4 +33,6 @@ public class ChessBoard {
         }
         return board.toString();
     }
+
+
 }
