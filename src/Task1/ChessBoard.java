@@ -2,8 +2,31 @@ package Task1;
 
 
 public class ChessBoard {
+    private int height;
+    private int width;
 
-    public String makeBoard(int height, int width) {
+    public ChessBoard(String height, String width) {
+        if(height == null || width == null) {
+            PrintInfo.printConsoleInstruction();
+        }
+        try{
+            this.height = Integer.parseInt(height);
+            this.width = Integer.parseInt(width);
+        } catch (NumberFormatException n) {
+            System.out.println("Parameter is not correct.");
+        }
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public String makeBoard() {
+
         StringBuilder board = new StringBuilder();
 
         for (int i = 1; i <= height; i++) {
