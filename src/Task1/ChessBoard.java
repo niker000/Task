@@ -6,8 +6,13 @@ public class ChessBoard {
     private int width;
 
     public ChessBoard(String height, String width) {
-        this.height = Integer.parseInt(height);
-        this.width = Integer.parseInt(width);
+        this.height = ParameterValidator.parseFromStrToInt(height);
+        this.width = ParameterValidator.parseFromStrToInt(width);
+    }
+
+    public ChessBoard(int height, int width) {
+        this.height = height;
+        this.width = width;
     }
 
     public int getHeight() {
