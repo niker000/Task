@@ -1,15 +1,16 @@
+package Run;
+
 import Task1.ChessBoard;
 import Task1.ParameterValidator;
 import Task1.PrintHelper;
-import Task_2.Enveloper;
-import Task_2.EnveloperCompare;
+import Task_2.Envelope;
+import Task_2.EnvelopeComparator;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Run {
-    public static void enveloperRun() throws IOException {
+    public static void envelopeRun() {
         double firstHeight;
         double firstWidth;
         double secondHeight;
@@ -32,10 +33,10 @@ public class Run {
                 PrintHelper.print("Enter width of the second enveloper");
                 secondWidth = ParameterValidator.parseStrToDouble(br.readLine());
 
-                Enveloper enveloper_1 = new Enveloper(firstHeight, firstWidth);
-                Enveloper enveloper_2 = new Enveloper(secondHeight, secondWidth);
+                Envelope envelope_1 = new Envelope(firstHeight, firstWidth);
+                Envelope envelope_2 = new Envelope(secondHeight, secondWidth);
 
-                if (EnveloperCompare.compare(enveloper_1, enveloper_2)) {
+                if (EnvelopeComparator.compare(envelope_1, envelope_2) || EnvelopeComparator.compare(envelope_2, envelope_1) ) {
                     PrintHelper.print("One envelope can be inserted into another");
                 }
 
@@ -54,7 +55,7 @@ public class Run {
         }
     }
 
-    public static void chessBoardRun() throws IOException {
+    public static void chessBoardRun()  {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             PrintHelper.print("Enter the chessBoards height");
             int height = ParameterValidator.parseFromStrToInt(bufferedReader.readLine());

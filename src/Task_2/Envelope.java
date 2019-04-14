@@ -1,10 +1,10 @@
 package Task_2;
 
-public class Enveloper {
+public class Envelope {
     private double height;
     private double width;
 
-    public Enveloper(double height, double width) {
+    public Envelope(double height, double width) {
         this.height = height;
         this.width = width;
     }
