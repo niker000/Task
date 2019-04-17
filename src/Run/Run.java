@@ -1,75 +1,76 @@
 package Run;
 
 import Task1.ChessBoard;
-import Task1.ParameterValidator;
-import Task1.PrintHelper;
 import Task_2.Envelope;
 import Task_2.EnvelopeComparator;
+import Uttils.ParameterValidator;
+import Uttils.PrintHelper;
+import Uttils.UserHelper;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Run {
-    public static void envelopeRun() {
-        double firstHeight;
-        double firstWidth;
-        double secondHeight;
-        double secondWidth;
+    public static void envelopeRun() throws IOException {
+        double height;
+        double width;
+        final int DEFAULT_NUMBER_OF_ENVELOPES = 2;
 
-        boolean answer = true;
-
+        ArrayList<Envelope> envelopeList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             do {
-                PrintHelper.print("Enter height of the first enveloper");
-                firstHeight = ParameterValidator.parseStrToDouble(br.readLine());
+                for (int i = 0; i < DEFAULT_NUMBER_OF_ENVELOPES; i++) {
+                    PrintHelper.print("Enter height of the enveloper");
+                    height = ParameterValidator.parseStrToDouble(br.readLine());
 
-                PrintHelper.print("Enter width of the first enveloper");
-                firstWidth = ParameterValidator.parseStrToDouble(br.readLine());
+                    PrintHelper.print("Enter width of the enveloper");
+                    width = ParameterValidator.parseStrToDouble(br.readLine());
 
-                PrintHelper.print("Enter height of the second enveloper");
-                secondHeight = ParameterValidator.parseStrToDouble(br.readLine());
+                    if (height == -1 && width == -1) {
+                        PrintHelper.printConsoleEnvelopInstruction();
+                        break;
+                    }
+                    envelopeList.add(new Envelope(height, width));
+                }
 
-                PrintHelper.print("Enter width of the second enveloper");
-                secondWidth = ParameterValidator.parseStrToDouble(br.readLine());
+                if (EnvelopeComparator.compare(envelopeList.get(0), envelopeList.get(1))
+                        || EnvelopeComparator.compare(envelopeList.get(1), envelopeList.get(0))) {
 
-                Envelope envelope_1 = new Envelope(firstHeight, firstWidth);
-                Envelope envelope_2 = new Envelope(secondHeight, secondWidth);
-
-                if (EnvelopeComparator.compare(envelope_1, envelope_2) || EnvelopeComparator.compare(envelope_2, envelope_1) ) {
                     PrintHelper.print("One envelope can be inserted into another");
+                } else {
+                    PrintHelper.print("One envelope cannot be inserted into another");
                 }
 
                 PrintHelper.print("Do you want to continue? y/n");
 
-                if (br.readLine().equalsIgnoreCase("n")) {
-                    answer = false;
-                }
-            } while (answer);
+            } while (UserHelper.isContinue());
 
         } catch (NumberFormatException nfe) {
             PrintHelper.print("Invalid parameter");
-        } catch (Exception e) {
-            PrintHelper.printConsoleEnvelopInstruction();
-
         }
     }
 
-    public static void chessBoardRun()  {
+    public static void chessBoardRun() throws IOException {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-            PrintHelper.print("Enter the chessBoards height");
-            int height = ParameterValidator.parseFromStrToInt(bufferedReader.readLine());
+                PrintHelper.print("Enter the chessBoards height");
+                int height = ParameterValidator.parseStrToInt(bufferedReader.readLine());
 
-            PrintHelper.print("Enter the chessBoards width");
-            int width = ParameterValidator.parseFromStrToInt(bufferedReader.readLine());
+                PrintHelper.print("Enter the chessBoards width");
+                int width = ParameterValidator.parseStrToInt(bufferedReader.readLine());
 
-            ChessBoard chessBoard = new ChessBoard(height, width);
+                if (height == -1 && width == -1) {
+                    PrintHelper.printConsoleEnvelopInstruction();
 
-            PrintHelper.printConsoleBoard(chessBoard.makeBoard());
+                }
+                ChessBoard chessBoard = new ChessBoard(height, width);
+
+                PrintHelper.printConsoleBoard(chessBoard.makeBoard());
+
         } catch (NumberFormatException nfe) {
             PrintHelper.print("Invalid parameter");
-        } catch (Exception e) {
-            PrintHelper.printConsoleChessInstruction();
         }
     }
 }

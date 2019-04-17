@@ -5,14 +5,17 @@ public class ChessBoard {
     private int height;
     private int width;
 
-    public ChessBoard(String height, String width) {
-        this.height = ParameterValidator.parseFromStrToInt(height);
-        this.width = ParameterValidator.parseFromStrToInt(width);
-    }
-
     public ChessBoard(int height, int width) {
-        this.height = height;
-        this.width = width;
+        if (height < 0) {
+            this.height = height * (-1);
+        } else {
+            this.height = height;
+        }
+        if (width < 0) {
+            this.width = width * (-1);
+        } else {
+            this.width = width;
+        }
     }
 
     public int getHeight() {

@@ -5,8 +5,17 @@ public class Envelope {
     private double width;
 
     public Envelope(double height, double width) {
-        this.height = height;
-        this.width = width;
+        if (height < 0) {
+            this.height = height * (-1);
+        } else {
+            this.height = height;
+        }
+        if (width < 0) {
+            this.width = width * (-1);
+        } else {
+            this.width = width;
+        }
+
     }
 
     public double getHeight() {
