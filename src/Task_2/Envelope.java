@@ -1,8 +1,8 @@
 package Task_2;
 
 public class Envelope {
-    private double height;
-    private double width;
+    final private double height;
+    final private double width;
 
     public Envelope(double height, double width) {
         if (height < 0) {

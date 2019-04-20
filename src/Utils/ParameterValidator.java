@@ -1,9 +1,9 @@
-package Uttils;
+package Utils;
 
 public class ParameterValidator {
-    public static int parseStrToInt(String parameter) {
+    public static int parseStrToInt(String parameter) throws NumberFormatException {
         if (parameter.equals("")) {
-            return -1;
+            throw new NumberFormatException();
         }
         int param = Integer.parseInt(parameter);
 
@@ -14,8 +14,7 @@ public class ParameterValidator {
         if (parameter.equals("")) {
             return -1;
         }
-        double param = Double.parseDouble(parameter);
-
-        return param;
+        return Double.parseDouble(parameter);
     }
+
 }

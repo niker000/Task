@@ -1,4 +1,4 @@
-package Uttils;
+package Utils;
 
 public class PrintHelper {
     public static void printConsoleBoard(String chessBoard) {

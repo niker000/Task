@@ -1,4 +1,4 @@
-package Uttils;
+package Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,4 +24,9 @@ public class UserHelper {
         }
         return answer;
     }
+
+    public static String inputData() throws IOException {
+        return bufferedReader.readLine();
+    }
 }
+

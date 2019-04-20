@@ -1,5 +1,5 @@
 import Run.Run;
-import Uttils.PrintHelper;
+import Utils.PrintHelper;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -17,6 +17,10 @@ public class Main {
                         break;
                     case (2) :
                         Run.envelopeRun();
+                        break;
+                    case (3) :
+                        Run.triangleRun();
+                        System.out.println("norm");
                         break;
                     default : PrintHelper.print("Enter the correct number");
                     continue;
