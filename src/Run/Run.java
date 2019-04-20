@@ -74,8 +74,7 @@ public class Run {
         try {
             do {
                 PrintHelper.print("Enter the parameters of the triangle");
-                triangles.add(TriangleCreator.getTreangleFromParameters(UserHelper.inputData()));
-                triangles.sort(triangleComparator);
+                triangles.add(TriangleCreator.getTriangleFromParameters(UserHelper.inputData()));
                 PrintHelper.print("Do you want to continue?");
 
             } while (UserHelper.isContinue());
@@ -83,6 +82,8 @@ public class Run {
             PrintHelper.print("Invalid parameter");
         } catch (IOException ioe) {
             PrintHelper.print("something went wrong while entering numbers");
+        } catch (IllegalArgumentException iae) {
+            PrintHelper.print(iae.getMessage());
         }
         triangles.sort(triangleComparator);
         PrintTriangles.printTriangles(triangles);

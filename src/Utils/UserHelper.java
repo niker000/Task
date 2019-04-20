@@ -7,8 +7,9 @@ import java.io.InputStreamReader;
 
 public class UserHelper {
     private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    public static boolean answer;
+
     public static boolean isContinue() throws IOException {
+        boolean answer = false;
         while (true) {
             String str = bufferedReader.readLine();
             if (str.equalsIgnoreCase("n")

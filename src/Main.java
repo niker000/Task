@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         PrintHelper.print("Which task do you want to run: 1 - ChessBoard builder; \n" +
-                "2 - Envelope comparison;");
+                "2 - Envelope comparison; \n" +
+                "3 - Triangle list");
 
         try (Scanner sc = new Scanner(System.in)){
             while (true) {
@@ -20,7 +21,6 @@ public class Main {
                         break;
                     case (3) :
                         Run.triangleRun();
-                        System.out.println("norm");
                         break;
                     default : PrintHelper.print("Enter the correct number");
                     continue;
