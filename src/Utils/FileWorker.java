@@ -18,9 +18,9 @@ public class FileWorker {
         }
     }
 
-    public static void writeFile(String fileName, Byte[] substring) throws IOException {
+    public static void writeFile(String fileName, byte[] substring, int firstOccureIndex, int secondOccureIndex) throws IOException {
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(fileName, "rw")) {
-
+            randomAccessFile.write(substring, firstOccureIndex, secondOccureIndex);
         } catch (FileNotFoundException fileNotFound) {
             PrintHelper.print("No such file or directory");
         }

@@ -32,6 +32,6 @@ public class FileParser {
     }
 
     public void replaceWithSubString(String subString) {
-        
+
     }
 }
