@@ -26,7 +26,7 @@ public class UserHelper {
         return answer;
     }
 
-    public static String inputData() throws IOException {
+    public static String enterData() throws IOException {
         return bufferedReader.readLine();
     }
 }

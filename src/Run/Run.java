@@ -6,6 +6,7 @@ import Task_2.EnvelopeComparator;
 import Task_3.PrintTriangles;
 import Task_3.Triangle;
 import Task_3.TriangleCreator;
+import Task_4.FileParser;
 import Utils.ParameterValidator;
 import Utils.PrintHelper;
 import Task_3.TriangleComparator;
@@ -26,8 +27,8 @@ public class Run {
             do {
                 for (int i = 0; i < DEFAULT_NUMBER_OF_ENVELOPES; i++) {
                     PrintHelper.print("Enter parameters of the enveloper");
-                    envelopeList.add(new Envelope(ParameterValidator.parseStrToDouble(UserHelper.inputData()),
-                            ParameterValidator.parseStrToDouble(UserHelper.inputData())));
+                    envelopeList.add(new Envelope(ParameterValidator.parseStrToDouble(UserHelper.enterData()),
+                            ParameterValidator.parseStrToDouble(UserHelper.enterData())));
                 }
 
                 if (EnvelopeComparator.compare(envelopeList.get(0), envelopeList.get(1))
@@ -74,7 +75,7 @@ public class Run {
         try {
             do {
                 PrintHelper.print("Enter the parameters of the triangle");
-                triangles.add(TriangleCreator.getTriangleFromParameters(UserHelper.inputData()));
+                triangles.add(TriangleCreator.getTriangleFromParameters(UserHelper.enterData()));
                 PrintHelper.print("Do you want to continue?");
 
             } while (UserHelper.isContinue());
@@ -87,6 +88,11 @@ public class Run {
         }
         triangles.sort(triangleComparator);
         PrintTriangles.printTriangles(triangles);
+    }
+
+    public static void fileParserRun() {
+        FileParser fileParser = new FileParser("C:\\Users\\niker000\\Desktop\\java.txt");
+        fileParser.calculateNumberOfOccurrencec("abc");
     }
 
 }

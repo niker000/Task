@@ -1,6 +1,6 @@
 package Task_3;
 
-public class Triangle{
+public class Triangle {
     final private String name;
     final private double side1;
     final private double side2;
@@ -40,10 +40,6 @@ public class Triangle{
 
         return Math.sqrt(p * (p - this.side1) * (p - this.side2) * (p - this.side3));
     }
-    TriangleComparator triangleComparator = new TriangleComparator();
-
-
-
 
     @Override
 
