@@ -1,8 +1,6 @@
 package Utils;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 
 public class FileWorker {
 
@@ -10,22 +8,24 @@ public class FileWorker {
     }
 
     public static String readFile(String fileName) throws IOException {
-
-        try (RandomAccessFile randomAccessFile = new RandomAccessFile(fileName, "r")) {
-
-            return randomAccessFile.readLine();
-
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(fileName))) {
+            int text;
+            while ((text = bufferedInputStream.read()) != -1) {
+                stringBuilder.append((char)text);
+            }
         }
+        return stringBuilder.toString();
     }
 
-    public static void writeFile(String fileName, byte[] substring, int firstOccureIndex, int secondOccureIndex) throws IOException {
+    public static void writeFile(String fileName, byte[] substring, int position, int endOffset) throws IOException {
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(fileName, "rw")) {
-            randomAccessFile.write(substring, firstOccureIndex, secondOccureIndex);
+            randomAccessFile.seek(position);
+            randomAccessFile.write(substring, position, endOffset);
         } catch (FileNotFoundException fileNotFound) {
             PrintHelper.print("No such file or directory");
         }
     }
-
 }
 
 

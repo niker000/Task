@@ -3,6 +3,8 @@ package Task_2;
 public class Envelope {
     final private double height;
     final private double width;
+    final private String ENVELOPE_INSTRUCRION = "1. Enter envelope parameters" + '\n' +
+                                                "2. Enter \"y\" if you want to continue or \"n\" to end the program";
 
     public Envelope(double height, double width) {
         if (height < 0) {

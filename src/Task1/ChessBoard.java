@@ -37,10 +37,8 @@ public class ChessBoard {
                     board.append(" ");
                 }
             }
-            board.append("\n");
+            board.append('\n');
         }
         return board.toString();
     }
-
-
 }
