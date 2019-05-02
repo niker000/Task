@@ -1,13 +1,14 @@
-package Task_4;
+package task4;
 
-import Utils.FileWorker;
-import Utils.PrintHelper;
+import utils.FileWorker;
+import utils.PrintHelper;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FileParser {
     private String fileDir;
+
 
     public FileParser(String fileDir) {
         this.fileDir = fileDir;
@@ -59,37 +60,30 @@ public class FileParser {
             PrintHelper.print("There no such string in the file");
         } else {
             int[] indexes = seekOccurenceIndex(replaceableString);
-            StringBuilder stringBuilder = new StringBuilder(text);
-
-            for (int index : indexes) {
-                int startIndex = index;
-                int endIndex;
-                if ((index + stringToReplace.length()) > stringBuilder.length()) {
-                    endIndex = stringBuilder.length();
-                } else {
-                    endIndex = index + stringToReplace.length();
-                }
-                stringBuilder.replace(startIndex, endIndex, stringToReplace);
-
-                try {
-                    FileWorker.writeFile(fileDir, stringBuilder.toString().getBytes(), index, replaceableString.length());
-                } catch (IOException ioe) {
-                    PrintHelper.print("Something wrong");
-                }
+            try {
+                System.out.println(stringToReplace);
+                FileWorker.writeToFileByIndex(fileDir, stringToReplace.getBytes(), indexes);
+            } catch (IOException ioe) {
+                PrintHelper.print("Something wrong");
             }
 
         }
     }
 
     private void stringReplacement(String text, String replaceableString, String stringToReplace) {
-        int[] indexes = seekOccurenceIndex(replaceableString);
-        text = text.replaceAll(replaceableString, stringToReplace);
-        try {
-            StringBuilder stringBuilder = new StringBuilder(text);
-            stringBuilder.delete(0, indexes[0]);
-            FileWorker.writeFile(fileDir, stringBuilder.toString().getBytes(), 0, stringBuilder.length());
-        } catch (IOException ioe) {
-            PrintHelper.print("Something wrong");
+        if (calculateNumberOfOccurrencec(replaceableString) == 0) {
+            PrintHelper.print("There no such string in the file");
+        } else {
+            int[] indexes = seekOccurenceIndex(replaceableString);
+            text = text.replaceAll(replaceableString, stringToReplace);
+            try {
+                StringBuilder stringBuilder = new StringBuilder(text);
+                stringBuilder.delete(0, indexes[0]);
+                System.out.println(stringBuilder.toString());
+                FileWorker.writeToFileFromIndex(fileDir, stringBuilder.toString().getBytes(), indexes[0]);
+            } catch (IOException ioe) {
+                PrintHelper.print("Something wrong");
+            }
         }
     }
 }

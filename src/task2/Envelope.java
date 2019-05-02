@@ -1,4 +1,4 @@
-package Task_2;
+package task2;
 
 public class Envelope {
     final private double height;

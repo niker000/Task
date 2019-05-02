@@ -1,4 +1,4 @@
-package Task_2;
+package task2;
 
 public class EnvelopeComparator {
     public static boolean compare(Envelope enveloper1, Envelope enveloper2) {

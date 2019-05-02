@@ -1,4 +1,4 @@
-package Task_3;
+package task3;
 
 public class Triangle {
     final private String name;
@@ -12,7 +12,7 @@ public class Triangle {
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
-        this.area = CalculateTriangleArea();
+        this.area = calculateTriangleArea();
     }
 
     public double getArea() {
@@ -35,7 +35,7 @@ public class Triangle {
         return side3;
     }
 
-    private double CalculateTriangleArea() {
+    private double calculateTriangleArea() {
         double p = (this.side1 + this.side2 + this.side3) / 2;
 
         return Math.sqrt(p * (p - this.side1) * (p - this.side2) * (p - this.side3));

@@ -1,6 +1,6 @@
-package Task_3;
+package task3;
 
-import Utils.PrintHelper;
+import utils.PrintHelper;
 
 import java.util.Collection;
 

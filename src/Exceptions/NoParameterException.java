@@ -1,4 +1,4 @@
-package Task_6;
+package Exceptions;
 
 public class NoParameterException extends Exception {
     public NoParameterException(String message) {

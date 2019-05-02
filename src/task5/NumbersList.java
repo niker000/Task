@@ -1,4 +1,4 @@
-package Task_5;
+package task5;
 
 public class NumbersList {
 
