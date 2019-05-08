@@ -29,14 +29,15 @@ public class FileWorker {
         }
     }
 
-    public static void writeToFileFromIndex(String fileName, byte[] stringToReplace, int index) throws IOException {
-        try (RandomAccessFile randomAccessFile = new RandomAccessFile(fileName, "rw")) {
-            randomAccessFile.seek(index);
-            randomAccessFile.write(stringToReplace);
+    public static void writeToFile(String fileName, byte[] stringToReplace) throws IOException {
+        try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(fileName))) {
+            bufferedOutputStream.write(stringToReplace);
         } catch (FileNotFoundException fileNotFound) {
             PrintHelper.print("No such file or directory");
         }
     }
 }
+
+
 
 

@@ -1,21 +1,39 @@
 package task4;
 
+import run.Instructions;
 import utils.FileWorker;
 import utils.PrintHelper;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class FileParser {
-    private String fileDir;
+public class FileParser implements Instructions {
+    private static final String FILE_PARSER_INSTRUCTION = "1. Choose the program mode: \n" +
+            "   1.1 Enter \"1\" if you want to get the number of occurrences of the string \n" +
+            "       or \"2\" if you want to replace the line with another.\n";
 
+    private String fileDir;
+    private String text;
+
+    public static String getFileParserInstruction() {
+        return FILE_PARSER_INSTRUCTION;
+    }
+
+    public String getText() {
+        return text;
+    }
 
     public FileParser(String fileDir) {
         this.fileDir = fileDir;
+        try {
+            this.text = FileWorker.readFile(fileDir);
+        } catch (IOException ioe) {
+            PrintHelper.print("The object can not be created");
+        }
     }
 
     public int calculateNumberOfOccurrencec(String subString) {
-        String fileString = "";
+        String fileString = this.text;
         try {
             fileString = FileWorker.readFile(fileDir);
         } catch (FileNotFoundException ioe) {
@@ -32,36 +50,30 @@ public class FileParser {
     }
 
     public void replaceWithSubString(String replaceableString, String stringToReplace) throws IOException {
-        String text = FileWorker.readFile(fileDir);
-
         if (replaceableString.length() == stringToReplace.length()) {
-            indexReplacement(text, replaceableString, stringToReplace);
+            indexReplacement(replaceableString, stringToReplace);
         } else {
-            stringReplacement(text, replaceableString, stringToReplace);
+            stringReplacement(replaceableString, stringToReplace);
         }
     }
 
     private int[] seekOccurenceIndex(String replaceableString) {
         int[] indexes = new int[calculateNumberOfOccurrencec(replaceableString)];
         int index = 0;
-        try {
-            for (int i = 0; i < indexes.length; i++) {
-                indexes[i] = FileWorker.readFile(fileDir).indexOf(replaceableString, index);
-                index = indexes[i] + 1;
-            }
-        } catch (IOException ioe) {
-            PrintHelper.print("Something wrong");
+        for (int i = 0; i < indexes.length; i++) {
+            index = text.indexOf(replaceableString, index+1);
+            indexes[i] = index;
         }
+
         return indexes;
     }
 
-    private void indexReplacement(String text, String replaceableString, String stringToReplace) {
+    private void indexReplacement( String replaceableString, String stringToReplace) {
         if (calculateNumberOfOccurrencec(replaceableString) == 0) {
             PrintHelper.print("There no such string in the file");
         } else {
             int[] indexes = seekOccurenceIndex(replaceableString);
             try {
-                System.out.println(stringToReplace);
                 FileWorker.writeToFileByIndex(fileDir, stringToReplace.getBytes(), indexes);
             } catch (IOException ioe) {
                 PrintHelper.print("Something wrong");
@@ -70,17 +82,14 @@ public class FileParser {
         }
     }
 
-    private void stringReplacement(String text, String replaceableString, String stringToReplace) {
+    private void stringReplacement(String replaceableString, String stringToReplace) {
+        String text = this.text;
         if (calculateNumberOfOccurrencec(replaceableString) == 0) {
             PrintHelper.print("There no such string in the file");
         } else {
-            int[] indexes = seekOccurenceIndex(replaceableString);
             text = text.replaceAll(replaceableString, stringToReplace);
             try {
-                StringBuilder stringBuilder = new StringBuilder(text);
-                stringBuilder.delete(0, indexes[0]);
-                System.out.println(stringBuilder.toString());
-                FileWorker.writeToFileFromIndex(fileDir, stringBuilder.toString().getBytes(), indexes[0]);
+                FileWorker.writeToFile(fileDir, text.getBytes());
             } catch (IOException ioe) {
                 PrintHelper.print("Something wrong");
             }

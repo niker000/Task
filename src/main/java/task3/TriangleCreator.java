@@ -16,8 +16,8 @@ public class TriangleCreator {
                 .skip(1)
                 .map(ParameterParser::parseStrToDouble)
                 .peek(params -> {
-                    if(params < 0){
-                        throw new IllegalArgumentException();
+                    if (params < 0) {
+                        params *= -1;
                     }
                 })
                 .collect(Collectors.toList());

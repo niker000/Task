@@ -7,7 +7,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ChessBoardMain {
+public class ChessBoardMain  {
+    public static final String CHESS_BOARD_INSTRUCTION = "1. Enter high and width of the chessboard";
+
     public static void main(String[] args) {
         chessBoardRun();
     }
@@ -28,6 +30,9 @@ public class ChessBoardMain {
         } catch (IOException ioe) {
             PrintHelper.print("Something wrong");
         }
+    }
 
+    public void printInstruction() {
+        PrintHelper.print(CHESS_BOARD_INSTRUCTION);
     }
 }
