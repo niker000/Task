@@ -49,7 +49,7 @@ public class FileParser implements Instructions {
         return (fileStringLength - fileString.length()) / subString.length();
     }
 
-    public void replaceWithSubString(String replaceableString, String stringToReplace) throws IOException {
+    public void replaceWithSubString(String replaceableString, String stringToReplace) {
         if (replaceableString.length() == stringToReplace.length()) {
             indexReplacement(replaceableString, stringToReplace);
         } else {
@@ -61,14 +61,14 @@ public class FileParser implements Instructions {
         int[] indexes = new int[calculateNumberOfOccurrencec(replaceableString)];
         int index = 0;
         for (int i = 0; i < indexes.length; i++) {
-            index = text.indexOf(replaceableString, index+1);
+            index = text.indexOf(replaceableString, index + 1);
             indexes[i] = index;
         }
 
         return indexes;
     }
 
-    private void indexReplacement( String replaceableString, String stringToReplace) {
+    private void indexReplacement(String replaceableString, String stringToReplace) {
         if (calculateNumberOfOccurrencec(replaceableString) == 0) {
             PrintHelper.print("There no such string in the file");
         } else {

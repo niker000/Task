@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class TicketMain {
     public static void main(String[] args) {
-        if (args.length==0) {
+        if (args.length == 0) {
             PrintHelper.print(TicketCounter.getLuckyTicketCounterInstruction());
         } else {
             TicketCounter ticket = new TicketCounter();
@@ -31,8 +31,7 @@ public class TicketMain {
 
         algorithm = algorithm.toLowerCase();
         if (algorithm.contains("moskow") | algorithm.contains("piter")) {
-            if ((algorithm.indexOf("moskow") <= algorithm.indexOf("piter"))
-                    && (algorithm.indexOf("piter") != -1) && algorithm.indexOf("moskow") != -1) {
+            if ((algorithm.indexOf("moskow") <= algorithm.indexOf("piter")) || algorithm.indexOf("piter") == -1) {
                 algorithm = "moskow";
             } else {
                 algorithm = "piter";
