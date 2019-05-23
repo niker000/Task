@@ -1,0 +1,13 @@
+<html>
+<body>
+<form method="post" action="createRoom">
+    <input type="text" name="roomname" placeholder="Room name">
+    <button type="submit">Create</button>
+</form>
+{{#rooms}}
+    <div>
+        <b>{{roomname}}</b>
+    </div>
+{{/rooms}}
+</body>
+</html>

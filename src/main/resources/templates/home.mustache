@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <h1>Welcome!</h1>
+        Search user
+        <form method="post" action="search">
+            <input type="text" name="username" placeholder="User username">
+            <button type="submit">Search</button>
+        </form>
+        {{#users}}
+            <div>
+                <b>{{username}}</b>
+            </div>
+        {{/users}}
+    <div>
+        <a href="/userProfile">User profile</a>
+    </div>
+    <div>
+        <a href="/login">Login</a>
+    </div>
+    </body>
+</html>
