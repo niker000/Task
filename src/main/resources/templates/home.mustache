@@ -12,6 +12,9 @@
                 <b>{{username}}</b>
             </div>
         {{/users}}
+        {{^users}}
+            User is not found
+        {{/users}}
     <div>
         <a href="/userProfile">User profile</a>
     </div>

@@ -15,7 +15,7 @@ public class UserSearchService {
         this.userRepository = userRepository;
     }
 
-    public List<User> searchUser(String search) {
+    public User searchUser(String search) {
         if (search != null && !search.isEmpty()) {
             return userRepository.findByUsername(search);
         } else {
