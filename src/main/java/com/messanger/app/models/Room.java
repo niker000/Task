@@ -9,12 +9,14 @@ import java.util.Set;
 @Entity
 @Table(name = "rooms")
 public class Room {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     @Column(name = "room_name")
     private String roomname;
-    @OneToMany
+    @ManyToMany
     private Set<User> members;
 
     public Room() {
@@ -29,9 +31,7 @@ public class Room {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+
 
     public String getRoomname() {
         return roomname;

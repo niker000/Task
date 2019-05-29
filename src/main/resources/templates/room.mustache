@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<h2>{{roomname}}</h2>
+<div>
+    {{#members}}
+        {{username}}
+    {{/members}}
+</div>
+
+<div>
+    <form method="post" action="addUserToRoom">
+        <input name="username" placeholder="User name" type="text">
+        <input type="hidden" name="roomname" value={{roomname}}>
+        <button type="submit">Add to room</button>
+    </form>
+    {{#message}}
+        Сan not add user
+    {{/message}}
+</div>
+</body>
+</html>

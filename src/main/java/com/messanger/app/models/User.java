@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,9 +25,18 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
     private Set<User> contacts;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Room> rooms;
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
+    }
 
     public User() {
     }
@@ -108,5 +118,9 @@ public class User implements UserDetails {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Boolean getActive() {
+        return active;
     }
 }

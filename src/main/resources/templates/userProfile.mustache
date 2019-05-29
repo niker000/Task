@@ -5,8 +5,33 @@
 </form>
 {{#rooms}}
     <div>
-        <b>{{roomname}}</b>
+        <form action="/room/">
+            <input type="hidden" name="roomname" value={{roomname}}>
+            <button type="submit">{{roomname}}</button>
+        </form>
     </div>
 {{/rooms}}
+<div>
+    <div>
+        <form action="/userProfile/addContact" method="post">
+            <input type="text" name="username" placeholder="User name">
+            <button type="submit">Add to contact list</button>
+        </form>
+
+    </div>
+    <div>
+        {{#message}}
+            Cannot add user
+        {{/message}}
+    </div>
+
+    {{#contacts}}
+        <b>{{username}}</b>
+    {{/contacts}}
+</div>
+
+<form action="/logout" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>
