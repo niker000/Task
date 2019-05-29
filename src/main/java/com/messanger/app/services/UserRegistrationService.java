@@ -1,12 +1,13 @@
 package com.messanger.app.services;
 
 import com.messanger.app.Exception.FealdExistException;
+import com.messanger.app.Interface.RegistrationI;
 import com.messanger.app.models.User;
 import com.messanger.app.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserRegistrationService {
+public class UserRegistrationService implements RegistrationI {
 
     private UserRepository userRepository;
 

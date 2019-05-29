@@ -1,9 +1,8 @@
 package com.messanger.app.models;
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -16,7 +15,8 @@ public class Room {
 
     @Column(name = "room_name")
     private String roomname;
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<User> members;
 
     public Room() {
@@ -24,7 +24,7 @@ public class Room {
 
     public Room(String roomName) {
         this.roomname = roomName;
-        members = new HashSet<>();
+        this.members = new HashSet<>();
     }
 
     public Integer getId() {

@@ -1,12 +1,12 @@
 package com.messanger.app.models;
 
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<User> contacts;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Room> rooms;
 
     public Set<Room> getRooms() {
@@ -44,6 +44,8 @@ public class User implements UserDetails {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.rooms = new HashSet<>();
+        this.contacts = new HashSet<>();
     }
 
     public Integer getId() {

@@ -3,14 +3,27 @@
 <form method="post" action="createRoom">
     <a href="/createRoom"> Create room</a>
 </form>
-{{#rooms}}
-    <div>
-        <form action="/room/">
-            <input type="hidden" name="roomname" value={{roomname}}>
-            <button type="submit">{{roomname}}</button>
-        </form>
-    </div>
-{{/rooms}}
+<table>
+    {{#rooms}}
+        <tr>
+            <td>
+                <div>
+                    <form action="/room/">
+                        <input type="hidden" name="roomname" value={{roomname}}>
+                        <button type="submit">{{roomname}}</button>
+                    </form>
+                </div>
+            </td>
+            <td>
+                <form method="post" action="/leave">
+                    <input type="hidden" name="roomname" value={{roomname}}>
+                    <button type="submit">Leave</button>
+                </form>
+            </td>
+        </tr>
+    {{/rooms}}
+</table>
+
 <div>
     <div>
         <form action="/userProfile/addContact" method="post">

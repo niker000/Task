@@ -16,7 +16,7 @@ public class AddContactIService implements AddUserToContactI {
 
     public boolean addToContact(String username, User user) {
         User userToAdd = userRepository.findByUsername(username);
-        if(!isNameValid(username)||user.getContacts().contains(userToAdd)&&(user.getUsername()!=username)) {
+        if ((!isNameValid(username) || user.getContacts().contains(userToAdd)) && (user.getUsername() != username)) {
             return false;
         }
         user.getContacts().add(userToAdd);
@@ -25,7 +25,7 @@ public class AddContactIService implements AddUserToContactI {
     }
 
     private boolean isNameValid(String username) {
-        if(userRepository.findByUsername(username)!=null) {
+        if (userRepository.findByUsername(username) != null) {
             return true;
         } else {
             return false;

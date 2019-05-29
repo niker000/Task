@@ -30,11 +30,4 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(s);
     }
 
-    public Set<User> getUserContacts(@AuthenticationPrincipal User user) {
-        return user.getContacts();
-    }
-
-    public Set<Room> getUserRooms(@AuthenticationPrincipal User user) {
-        return user.getRooms();
-    }
 }
